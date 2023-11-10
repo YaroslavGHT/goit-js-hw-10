@@ -1,0 +1,32 @@
+body{
+    padding: 40px 100px;
+    background-color: rgb(219, 227, 227);
+}
+
+.cat-info{
+    display: flex;
+    gap: 40px;
+    border: 4px;
+    /* border-color: aqua;
+    border-radius: 5%; */
+}
+
+.imglink{
+    display: block;
+    width: 350px;
+    height: 450px;
+}
+
+.im{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.info{
+    width: 350px;
+    height: 450px;
+}
+
+.loader{
+    padding: 20px 0;
+}
