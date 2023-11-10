@@ -4,23 +4,29 @@ import SlimSelect from 'slim-select'
 import Notiflix from 'notiflix';
 
 const catsAPI = new CatsAPI();
-const select = document.querySelector("#select-breed");
+const select = document.querySelector(".breed-select");
 const loading = document.querySelector(".loader");
 const errors = document.querySelector(".error")
 
-loading.style.visibility = "hidden";
+select.style.visibility = "hidden";
+loading.style.visibility = "visible";
 errors.style.visibility = "hidden";
 
 console.log(catsAPI.getBreed());
 
 catsAPI.getBreed().then(breeds => {
   breeds.forEach(breed => {
+    loading.style.visibility = "visible";
     const markup = listCreat(breed);
     select.insertAdjacentHTML('beforeend', markup);
+    select.style.visibility = "visible";
+
   });
   new SlimSelect({
-    select: '#select-breed'
+    select: '.breed-select'
   });
+  loading.style.visibility = "hidden";
+
 });
 
 function listCreat(list) {
@@ -35,6 +41,7 @@ select.addEventListener("change", addCat);
 const catDiv = document.querySelector(".cat-info")
 
 async function addCat(e) {
+  
   loading.style.visibility = "visible";
   const chosenIndex = e.currentTarget.selectedIndex;
   const breedId = e.currentTarget.options[chosenIndex].value;
@@ -44,7 +51,7 @@ async function addCat(e) {
     catOneAPI.fetchCatByBreed(breedId)
         .then(response => {
           const markup = createMarkup(response[0]);
-          catDiv.innerHTML= markup;
+          catDiv.innerHTML = markup;
         })
         .catch(error => {
           errors.style.visibility = "visible";
@@ -67,7 +74,7 @@ async function addCat(e) {
     }
   } catch (error) {
     errors.style.visibility = "visible";
-    console.error('Info about this breed not find', error);
+    console.log('Info about this breed not find', error);
   }
 }
 
