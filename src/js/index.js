@@ -11,7 +11,7 @@ const errors = document.querySelector(".error")
 loading.style.visibility = "hidden";
 errors.style.visibility = "hidden";
 
-// console.log(catsAPI.getBreed());
+console.log(catsAPI.getBreed());
 
 catsAPI.getBreed().then(breeds => {
   breeds.forEach(breed => {
